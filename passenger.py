@@ -1,3 +1,4 @@
+#import random
 class Passenger:
     def __init__(self, name, age, ticket_number, boarding_group):
         self.name = name
@@ -9,5 +10,5 @@ class Passenger:
     def __str__(self):
         return f"Passenger Name: {self.name}, Age: {self.age}, Ticket Number: {self.ticket_number}, Boarding Group: {self.boarding_group}"
 
-bob = Passenger("Bob Smith", 30, "A12345", random.randint(1, 5))
-print(bob)  # Output: Passenger Name: Bob Smith, Age: 30, Ticket Number: A12345
+#bob = Passenger("Bob Smith", 30, "A12345", random.randint(1, 5))
+#print(bob)  # Output: Passenger Name: Bob Smith, Age: 30, Ticket Number: A12345

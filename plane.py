@@ -10,6 +10,16 @@ class Plane:
         self.passengers = []
     def __str__(self):
         return f"Plane Model: {self.model}, Rows: {self.rows}, Layout: {self.layout}, Aisles: {self.aisles}, Capacity: {self.capacity}, Boarding Groups: {self.boarding_groups}"
-
-plane = Plane("Boeing 737", 30, "3-3", 2, 180, 5)
-print(plane)  # Output: Plane Model: Boeing 737, Rows: 30, Layout: 3-3, Aisles: 2, Capacity: 180, Boarding Groups: 5
+    def read_aircraft_data(filename):
+        return pd.read_csv(filename)
+    def create_plane_from_csv(filename):
+        data = Plane.read_aircraft_data(filename)
+        model = data['Model'][0]
+        rows = data['Rows'][0]
+        layout = data['Layout'][0]
+        aisles = data['Aisles'][0]
+        capacity = data['Capacity'][0]
+        boarding_groups = data['Boarding Groups'][0]
+        return Plane(model, rows, layout, aisles, capacity, boarding_groups)
+#plane = Plane("Boeing 737", 30, "3-3", 2, 180, 5)
+#print(plane)  # Output: Plane Model: Boeing 737, Rows: 30, Layout: 3-3, Aisles: 2, Capacity: 180, Boarding Groups: 5
