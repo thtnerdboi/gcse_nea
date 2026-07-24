@@ -1,15 +1,16 @@
 import pandas as pd
 class Plane:
-    def __init__(self, model, rows, layout, aisles, capacity, boarding_groups):
+    def __init__(self, model, rows, layout, aisles, capacity, boarding_groups, passengers):
         self.model = model
         self.rows = rows
         self.layout = layout
         self.aisles = aisles
         self.capacity = capacity
         self.boarding_groups = boarding_groups
-        self.passengers = []
+        self.passengers = passengers
     def __str__(self):
         return f"Plane Model: {self.model}, Rows: {self.rows}, Layout: {self.layout}, Aisles: {self.aisles}, Capacity: {self.capacity}, Boarding Groups: {self.boarding_groups}"
+class assignment:
     def read_aircraft_data(filename):
         return pd.read_csv(filename)
     def create_plane_from_csv(filename):

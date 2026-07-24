@@ -1,10 +1,10 @@
-aircraft_code,aircraft_name,rows,layout,aisles,typical_capacity,boarding_groups
-A320,Airbus A320,30,ABC-DEF,1,180,5
-A321,Airbus A321,38,ABC-DEF,1,228,6
-B737-9,Boeing 737-9,35,ABC-DEF,1,210,6
-B777-9,Boeing 777-9,42,ABC-DEFG-HJK,2,378,8
-B787-8,Boeing 787-8,31,ABC-DEG-HJK,2,248,6
-A350-1000,Airbus A350-1000,41,ABC-DEG-HJK,2,369,8
-A330-900,Airbus A330-900,36,AC-DEFG-HK,2,287,7
-A380-800,Airbus A380-800,55,ABC-DEFG-HJK,2,520,10
-E190,Embraer E190,25,AC-DF,1,100,4
+aircraft_code,aircraft_name,rows,layout,aisles,typical_capacity,boarding_groups,weight
+A320,Airbus A320,30,ABC-DEF,1,180,5,25
+A321,Airbus A321,38,ABC-DEF,1,228,6,18
+B737-9,Boeing 737-9,35,ABC-DEF,1,210,6,16
+B777-9,Boeing 777-9,42,ABC-DEFG-HJK,2,378,8,3
+B787-8,Boeing 787-8,31,ABC-DEG-HJK,2,248,6,10
+A350-1000,Airbus A350-1000,41,ABC-DEG-HJK,2,369,8,6
+A330-900,Airbus A330-900,36,AC-DEFG-HK,2,287,7,8
+A380-800,Airbus A380-800,55,ABC-DEFG-HJK,2,520,10,2
+E190,Embraer E190,25,AC-DF,1,100,4,12

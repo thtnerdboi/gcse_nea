@@ -1,4 +1,14 @@
 #import random
+from enum import Enum, auto
+
+class PassengerState(Enum):
+    walking = auto()
+    waiting = auto()
+    boarding = auto()
+    checking_in = auto()
+    settling = auto()
+
+
 class Passenger:
     def __init__(self, name, age, ticket_number, boarding_group):
         self.name = name
