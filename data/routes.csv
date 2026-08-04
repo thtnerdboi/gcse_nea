@@ -1,0 +1,18 @@
+route_id,origin,destination,aircraft_code,flight_time_min,weight
+R001,London Heathrow,Paris Charles de Gaulle,A320,75,20
+R002,London Heathrow,Amsterdam Schiphol,A320,65,18
+R003,London Heathrow,Dublin,A321,80,15
+R004,London Heathrow,Madrid,A321,145,12
+R005,London Heathrow,Frankfurt,B737-9,95,10
+R006,London Heathrow,Rome Fiumicino,B737-9,160,8
+R007,London Heathrow,Edinburgh,E190,80,10
+R008,London Heathrow,Belfast,E190,70,8
+R009,London Heathrow,New York JFK,B787-8,435,6
+R010,London Heathrow,Boston,B787-8,420,4
+R011,London Heathrow,Dubai,A350-1000,420,5
+R012,London Heathrow,Singapore,A350-1000,810,2
+R013,London Heathrow,Toronto,A330-900,445,4
+R014,London Heathrow,Lisbon,A330-900,160,3
+R015,London Heathrow,Sydney,A380-800,1260,1
+R016,London Heathrow,Los Angeles,B777-9,660,2
+R017,London Heathrow,Hong Kong,B777-9,770,2
