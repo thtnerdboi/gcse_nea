@@ -3,23 +3,32 @@ import pandas as pd
 from plane import assignment
 class ScheduleGenerator:
     def __init__(self):
-        self.aircraft_probability_list = self.generate_probability_list()
+        aircraft_df = assignment.read_aircraft_data("data/aircraft.csv")
+        self.aircraft_probability_list = self.generate_probability_list(aircraft_df,"aircraft_code")
         self.df2 = assignment.read_aircraft_data("data/routes.csv")
-    def generate_probability_list(self):
-        self.df = assignment.read_aircraft_data("data/aircraft.csv")
+    def generate_probability_list(self, df, data_point):
         weight_column = "weight"
-        aircraft_probability_list = []
-        for _, row in self.df.iterrows():
-            aircraft_code = row["aircraft_code"]
+        probability_list = []
+        for _, row in df.iterrows():
+            code = row[data_point]
             weight = int(row[weight_column])
-            aircraft_probability_list.extend([aircraft_code] * weight)
-        return aircraft_probability_list
+            probability_list.extend([code] * weight)
+        return probability_list
     def give_plane(self):
         chosen_plane = random.choice(self.aircraft_probability_list)
         return chosen_plane
     def get_flight_no(self, aircraft_code):
         matching_routes = self.df2[self.df2["aircraft_code"] == aircraft_code]
-        chosen_route = matching_routes.sample(n=1)
+        route_probability_list = self.generate_probability_list(matching_routes,"route_id")
+        chosen_route = random.choice(route_probability_list)
+        chosen_route = matching_routes[matching_routes["route_id"] == chosen_route]
+        #Debug statements below to test aspects of the method
+        #print("Aircraft:", aircraft_code)
+        #print("Matching routes:")
+        #print(matching_routes)
+        #print("Chosen route id:", chosen_route)
+        #print("Chosen route:")
+        #print(chosen_route)
         return chosen_route
 
 
@@ -52,11 +61,11 @@ class Schedule:
         if selected_routes:
             self.df = pd.concat(selected_routes,ignore_index=True)
         return self.df
-#chosen_plane = ScheduleGenerator().give_plane()
-#print(chosen_plane) 
-#schedule = Schedule()
-#print(schedule.df)
-#flight_number = ScheduleGenerator().get_flight_no(chosen_plane)
-#print(flight_number)
-
-print(Schedule().create_schedule())
+chosen_plane = ScheduleGenerator().give_plane()
+print(chosen_plane) 
+schedule = Schedule()
+print(schedule.df)
+flight_number = ScheduleGenerator().get_flight_no(chosen_plane)
+print(flight_number)
+Schedule1 = Schedule()
+print(Schedule1.create_schedule())

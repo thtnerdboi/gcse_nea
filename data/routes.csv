@@ -1,18 +1,45 @@
 route_id,origin,destination,aircraft_code,flight_time_min,weight
-R001,London Heathrow,Paris Charles de Gaulle,A320,75,20
-R002,London Heathrow,Amsterdam Schiphol,A320,65,18
-R003,London Heathrow,Dublin,A321,80,15
-R004,London Heathrow,Madrid,A321,145,12
-R005,London Heathrow,Frankfurt,B737-9,95,10
-R006,London Heathrow,Rome Fiumicino,B737-9,160,8
-R007,London Heathrow,Edinburgh,E190,80,10
-R008,London Heathrow,Belfast,E190,70,8
-R009,London Heathrow,New York JFK,B787-8,435,6
-R010,London Heathrow,Boston,B787-8,420,4
-R011,London Heathrow,Dubai,A350-1000,420,5
-R012,London Heathrow,Singapore,A350-1000,810,2
-R013,London Heathrow,Toronto,A330-900,445,4
-R014,London Heathrow,Lisbon,A330-900,160,3
-R015,London Heathrow,Sydney,A380-800,1260,1
-R016,London Heathrow,Los Angeles,B777-9,660,2
-R017,London Heathrow,Hong Kong,B777-9,770,2
+OCR001,London Heathrow,Paris Charles de Gaulle,A320,75,24
+OCR002,London Heathrow,Amsterdam Schiphol,A320,70,22
+OCR003,London Heathrow,Frankfurt,A320,95,20
+OCR004,London Heathrow,Brussels Airport,A320,70,18
+OCR005,London Heathrow,Geneva Airport,A320,100,16
+OCR006,London Heathrow,Madrid Barajas,A321,145,25
+OCR007,London Heathrow,Rome Fiumicino,A321,165,22
+OCR008,London Heathrow,Barcelona El Prat,A321,135,22
+OCR009,London Heathrow,Lisbon Airport,A321,165,17
+OCR010,London Heathrow,Athens International,A321,225,14
+OCR011,London Heathrow,Dublin Airport,B737-9,80,25
+OCR012,London Heathrow,Edinburgh Airport,B737-9,85,23
+OCR013,London Heathrow,Copenhagen Airport,B737-9,115,20
+OCR014,London Heathrow,Oslo Gardermoen,B737-9,130,17
+OCR015,London Heathrow,Prague Airport,B737-9,125,15
+OCR016,London Heathrow,Belfast City Airport,E190,75,30
+OCR017,London Heathrow,Manchester Airport,E190,65,25
+OCR018,London Heathrow,Newcastle Airport,E190,70,24
+OCR019,London Heathrow,Jersey Airport,E190,65,21
+OCR020,London Heathrow,New York JFK,B787-8,450,30
+OCR021,London Heathrow,Boston Logan,B787-8,425,24
+OCR022,London Heathrow,Washington Dulles,B787-8,490,18
+OCR023,London Heathrow,Delhi Indira Gandhi,B787-8,530,16
+OCR024,London Heathrow,Montreal Trudeau,B787-8,445,12
+OCR025,London Heathrow,Toronto Pearson,A330-900,460,28
+OCR026,London Heathrow,Chicago O'Hare,A330-900,510,24
+OCR027,London Heathrow,Miami International,A330-900,575,18
+OCR028,London Heathrow,Accra Kotoka,A330-900,395,16
+OCR029,London Heathrow,Lagos Murtala Muhammed,A330-900,400,14
+OCR030,London Heathrow,Dubai International,A350-1000,425,28
+OCR031,London Heathrow,Singapore Changi,A350-1000,800,24
+OCR032,London Heathrow,Hong Kong International,A350-1000,760,19
+OCR033,London Heathrow,Tokyo Haneda,A350-1000,840,17
+OCR034,London Heathrow,Cape Town International,A350-1000,710,12
+OCR035,London Heathrow,Los Angeles International,B777-9,675,27
+OCR036,London Heathrow,San Francisco International,B777-9,690,23
+OCR037,London Heathrow,Seattle Tacoma,B777-9,600,18
+OCR038,London Heathrow,Sao Paulo Guarulhos,B777-9,700,17
+OCR039,London Heathrow,Bangkok Suvarnabhumi,B777-9,715,15
+OCR040,London Heathrow,Sydney Kingsford Smith,A380-800,1260,28
+OCR041,London Heathrow,Singapore Changi,A380-800,800,25
+OCR042,London Heathrow,Dubai International,A380-800,425,22
+OCR043,London Heathrow,Johannesburg O.R. Tambo,A380-800,660,15
+OCR044,London Heathrow,Los Angeles International,A380-800,675,10
