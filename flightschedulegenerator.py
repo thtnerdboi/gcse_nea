@@ -9,7 +9,8 @@ class ScheduleGenerator:
         aircraft_df = assignment.read_aircraft_data("data/aircraft.csv") # Creates dataframe from aircraft.csv
         self.aircraft_probability_list = self.generate_probability_list(aircraft_df,"aircraft_code")# Creates probability list calling on below method
         self.df2 = assignment.read_aircraft_data("data/routes.csv") #Creates another dataframe from routes.csv allowing the selected plane to get the selectedpi 
-    def generate_probability_list(self, df, data_point):
+    @staticmethod
+    def generate_probability_list(df, data_point):
         weight_column = "weight" #Calls weight column
         probability_list = [] # Creates empty list to append to for the weighted probabilities
         for _, row in df.iterrows():
@@ -33,12 +34,27 @@ class ScheduleGenerator:
         #print("Chosen route:")
         #print(chosen_route)
         return chosen_route
-
+    @staticmethod
+    def generate_flight_gap(a, b, number_of_flights):
+        start_in_mins = a * 60 + b
+        gap_to_next_flight = [5,5,5,5,5,5,10,10,10,10,15,15,20,25,30,45]
+        flight_times = []
+        current_time = start_in_mins
+        for i in range(number_of_flights):
+            next_flight_in = random.choice(gap_to_next_flight)
+            current_time += next_flight_in
+            next_flight_time_hrs = current_time // 60
+            next_flight_time_minutes = current_time % 60
+            result = f"{next_flight_time_hrs:02d}:{next_flight_time_minutes:02d}"
+            if next_flight_time_hrs > 23:
+                break
+            flight_times.append(result)
+        return flight_times
+            
 
 
 #result = ScheduleGenerator().generate_probability_list()
 #print(result)
-
 class Schedule:
     def __init__(self):
         self.df = pd.DataFrame(
@@ -52,7 +68,6 @@ class Schedule:
                 "flight_time_min"
             ]
         )# Creates empty dataframe with columns to be appended
-
     def create_schedule(self):
         selected_routes = []# Creates empty list for the selected routes
         generator = ScheduleGenerator()# Constructor for the generator object
@@ -63,10 +78,15 @@ class Schedule:
                 selected_routes.append(chosen_route)# Appends route to selected routes list
         if selected_routes:
             self.df = pd.concat(selected_routes,ignore_index=True)#Concatenates dataframe
-        self.df = self.df.loc[~self.df.eq(self.df.shift()).all(axis=1)]# Deletes consecutively duplicate routes
+        flight_times = generator.generate_flight_gap(0,0,len(self.df))
+        self.df = self.df.iloc[:len(flight_times)].copy()
+        self.df["departure_time"] = flight_times
+        self.df.dropna
+        self.df = self.df.loc[~self.df.eq(self.df.shift()).all(axis=1)]# Deletes consecutively identical routes
         self.df = self.df.drop(columns = ["weight"])# Drops weight column from timetable(Weight was only for the probabilities of the route's selection not for the user to see)
         return self.df
 #Testing below
+"""
 chosen_plane = ScheduleGenerator().give_plane()
 print(chosen_plane) 
 schedule = Schedule()
@@ -76,36 +96,14 @@ print(flight_number)
 Schedule1 = Schedule()
 df = Schedule1.create_schedule()
 print(df)
-print(tabulate(df, headers = 'keys', tablefmt = 'psql'))
+print(tabulate(df, headers = 'keys', tablefmt = 'psql'))# Console Debugging
+"""
 
-#TKinter Visualistation
-class Visualisation:
-    def table_display(self, df):
-        root = tk.Tk()
-        root.title("OCR Airport Timetable")
-        root.geometry("800x500")
-        tree = ttk.Treeview(
-            root,
-            columns=("flight", "destination", "aircraft", "duration"),
-            show="headings"
-        )
-        tree.heading("flight", text="Route")
-        tree.heading("destination", text="Destination")
-        tree.heading("aircraft", text="Aircraft")
-        tree.heading("duration", text="Flight Time")
-        for _, row in df.iterrows():
-            tree.insert(
-                "",
-                "end",
-                values=(
-                    row["route_id"],
-                    row["destination"],
-                    row["aircraft_code"],
-                    row["flight_time_min"]
-                )
-            )
-        tree.pack(fill="both", expand=True)
-        root.mainloop()
+generator = ScheduleGenerator()
+test1 = generator.generate_flight_gap(0,0,121)
+print(test1)
+print(len(test1))
 
-gui = Visualisation()
-gui.table_display(df)
+Schedule1 = Schedule()
+df = Schedule1.create_schedule()
+print(df)
