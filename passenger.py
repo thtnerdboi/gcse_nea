@@ -14,11 +14,11 @@ class PassengerState(Enum):
 class Passenger:
     def __init__(self):
         self.df = pd.read_csv("data/passengers.csv")
-        self.probability_list = fsg.Schedule_generator.generate_probability_list(self.df, "passenger_id")
+        self.probability_list = fsg.ScheduleGenerator.generate_probability_list(self.df, "passenger_id")
     def assign_passenger_info(self):
-        self.df = pd.read_csv("data/passengers.csv")
         passenger = random.choice(self.probability_list)
-        passenger_data = self.df.loc[self.df["passenger_id"] == passenger]
+        passenger_data = self.df.loc[self.df["passenger_id"] == passenger].copy()
+        passenger_data["state"] = PassengerState.walking
         return passenger_data
     def assign_plane(self):
         self.df = fsg.Schedule.create_schedule()
