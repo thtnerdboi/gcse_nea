@@ -78,8 +78,8 @@ class Schedule:
                 selected_routes.append(chosen_route)# Appends route to selected routes list
         if selected_routes:
             self.df = pd.concat(selected_routes,ignore_index=True)#Concatenates dataframe
-        flight_times = generator.generate_flight_gap(0,0,len(self.df))
-        self.df = self.df.iloc[:len(flight_times)].copy()
+        flight_times = generator.generate_flight_gap(0,0,len(self.df))#Calls method to generate the gap between flights
+        self.df = self.df.iloc[:len(flight_times)].copy()# Uses times to generate 
         self.df["departure_time"] = flight_times
         self.df.dropna
         self.df = self.df.loc[~self.df.eq(self.df.shift()).all(axis=1)]# Deletes consecutively identical routes
@@ -97,7 +97,7 @@ Schedule1 = Schedule()
 df = Schedule1.create_schedule()
 print(df)
 print(tabulate(df, headers = 'keys', tablefmt = 'psql'))# Console Debugging
-"""
+
 
 generator = ScheduleGenerator()
 test1 = generator.generate_flight_gap(0,0,121)
@@ -107,3 +107,4 @@ print(len(test1))
 Schedule1 = Schedule()
 df = Schedule1.create_schedule()
 print(df)
+"""
