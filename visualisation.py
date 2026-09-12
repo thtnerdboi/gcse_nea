@@ -4,31 +4,31 @@ from tkinter import ttk
 import pygame as pg
 import flightschedulegenerator as fsg
 import passenger
-
+import simulation
 
 class Visualisation:
 
-    def table_display(self, df):
-
+    def full_display(self, df, simulation):
         root = tk.Tk()
-        root.title("OCR Airport Timetable")
-        root.geometry("800x500")
+        root.title("OCR Airport Simulation")
+        root.geometry("1400x600")
 
-        tree = ttk.Treeview(
-            root,
+        left_frame = tk.Frame(root)
+        left_frame.pack(side="left", fill="both", expand=True)
+
+        right_frame = tk.Frame(root)
+        right_frame.pack(side="right", fill="both", expand=True)
+        schedule_tree = ttk.Treeview(left_frame,
             columns=("flight", "destination", "aircraft", "duration", "departs"),
-            show="headings"
-        )
+            show="headings")
 
-        tree.heading("flight", text="Route")
-        tree.heading("destination", text="Destination")
-        tree.heading("aircraft", text="Aircraft")
-        tree.heading("duration", text="Flight Time")
-        tree.heading("departs", text="Departure Time")
-
+        schedule_tree.heading("flight", text="Route")
+        schedule_tree.heading("destination", text="Destination")
+        schedule_tree.heading("aircraft", text="Aircraft")
+        schedule_tree.heading("duration", text="Flight Time")
+        schedule_tree.heading("departs", text="Departure Time")
         for _, row in df.iterrows():
-
-            tree.insert(
+            schedule_tree.insert(
                 "",
                 "end",
                 values=(
@@ -40,58 +40,54 @@ class Visualisation:
                 )
             )
 
-        tree.pack(fill="both", expand=True)
+        schedule_tree.pack(fill="both", expand=True)
+        time_label = tk.Label(
+            right_frame,
+            text="Time: 00:00",
+            font=("Arial", 16)
+        )
+        time_label.pack()
 
-        root.mainloop()
-
-def passenger_display(self, simulation):
-    root = tk.Tk()
-    root.title("OCR Airport Passenger Simulation")
-    root.geometry("900x500")
-
-    time_label = tk.Label(root, text="Time: 00:00", font=("Arial", 16))
-    time_label.pack()
-
-    tree = ttk.Treeview(
-        root,
-        columns=("passenger", "flight", "departure", "state"),
-        show="headings"
-    )
-
-    tree.heading("passenger", text="Passenger")
-    tree.heading("flight", text="Flight")
-    tree.heading("departure", text="Departure")
-    tree.heading("state", text="State")
-
-    tree.pack(fill="both", expand=True)
-
-    def update():
-        simulation.update()
-
-        hours = simulation.current_time // 60
-        minutes = simulation.current_time % 60
-
-        time_label.config(
-            text=f"Time: {hours:02d}:{minutes:02d}"
+        passenger_tree = ttk.Treeview(
+            right_frame,
+            columns=("passenger", "flight", "departure", "state"),
+            show="headings"
         )
 
-        tree.delete(*tree.get_children())
+        passenger_tree.heading("passenger", text="Passenger")
+        passenger_tree.heading("flight", text="Flight")
+        passenger_tree.heading("departure", text="Departure")
+        passenger_tree.heading("state", text="State")
 
-        for _, row in simulation.passengers.active_passengers.iterrows():
-            tree.insert(
-                "",
-                "end",
-                values=(
-                    row["passenger_id"],
-                    row["flight"],
-                    row["departure_time"],
-                    row["state"].name
-                )
+        passenger_tree.pack(fill="both", expand=True)
+
+        def update():
+            simulation.update()
+
+            hours = simulation.current_time // 60
+            minutes = simulation.current_time % 60
+
+            time_label.config(
+                text=f"Time: {hours:02d}:{minutes:02d}"
             )
 
-        if simulation.current_time < 1440:
-            root.after(100, update)
+            passenger_tree.delete(*passenger_tree.get_children())
 
-    update()
+            for _, row in simulation.passengers.active_passengers.iterrows():
+                passenger_tree.insert(
+                    "",
+                    "end",
+                    values=(
+                        row["passenger_id"],
+                        row["flight"],
+                        row["departure_time"],
+                        row["state"].name
+                    )
+                )
 
-    root.mainloop()
+            if simulation.current_time < 1440:
+                root.after(100, update)
+
+        update()
+
+        root.mainloop()

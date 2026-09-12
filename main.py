@@ -1,9 +1,11 @@
-import passenger
+import flightschedulegenerator as fsg
 import visualisation
 from simulation import Simulation
+
+schedule = fsg.Schedule().create_schedule()
 
 simulation = Simulation()
 simulation.setup(100)
 
 gui = visualisation.Visualisation()
-gui.passenger_display(simulation)
+gui.full_display(schedule, simulation)
