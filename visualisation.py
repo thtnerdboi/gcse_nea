@@ -1,7 +1,6 @@
 import pandas as pd
 import tkinter as tk
 from tkinter import ttk
-import pygame as pg
 import flightschedulegenerator as fsg
 import passenger
 import simulation
@@ -78,7 +77,7 @@ class Visualisation:
                     "",
                     "end",
                     values=(
-                        row["passenger_id"],
+                        f"{row['first_name']} {row['last_name']}",
                         row["flight"],
                         row["departure_time"],
                         row["state"].name
